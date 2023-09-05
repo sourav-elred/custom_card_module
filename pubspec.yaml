@@ -18,6 +18,8 @@ dependencies:
   image_cropper: ^4.0.1
   provider: ^6.0.5
   photo_view: ^0.14.0
+  dio: ^5.3.2
+  http_parser: ^4.0.2
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +31,17 @@ flutter:
   assets:     
     - assets/icons/
     - assets/images/
+
+  fonts:
+    - family: AvenirNextLTPro
+      fonts:
+        - asset: assets/fonts/AvenirNextLTPro-Light.ttf
+          weight: 300
+        - asset: assets/fonts/AvenirNextLTPro-Regular.otf
+          weight: 400
+        - asset: assets/fonts/AvenirNextLTPro-Medium.otf
+          weight: 500
+        - asset: assets/fonts/AvenirNextLTPro-SemiBold.otf
+          weight: 600  
+        - asset: assets/fonts/AvenirNextLTPro-Bold.otf
+          weight: 700

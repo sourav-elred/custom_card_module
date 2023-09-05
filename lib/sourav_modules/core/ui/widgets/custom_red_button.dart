@@ -40,7 +40,7 @@ class CustomRedButton extends StatelessWidget {
                 style: TextStyle(
                   color: invert ? const Color(0xFFE72D38) : Colors.white,
                   fontSize: 20,
-                  fontFamily: 'Avenir Next LT Pro',
+                  fontFamily: 'AvenirNextLTPro',
                   fontWeight: FontWeight.w500,
                 ),
               ),
