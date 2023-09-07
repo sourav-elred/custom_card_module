@@ -1,12 +1,9 @@
 import 'dart:io';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/services/custom_card_service.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/utlis/media.dart';
 import 'package:flutter/material.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
 
