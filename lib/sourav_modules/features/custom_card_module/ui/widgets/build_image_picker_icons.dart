@@ -61,8 +61,7 @@ void _pickImages(BuildContext context, bool isEditCard,
     {required bool isGallery}) {
   context
       .read<CustomCardVM>()
-      .pickImageFromCameraOrGallery(
-          isGallery: isGallery, isEditCard: isEditCard)
+      .callImagePickerAndCropper(isGallery: isGallery, isEditCard: isEditCard)
       .then((imgPath) {
     if (imgPath != null) {
       if (isEditCard) {

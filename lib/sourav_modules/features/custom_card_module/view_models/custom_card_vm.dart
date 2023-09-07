@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/services/custom_card_service.dart';
+import 'package:custom_card_module/sourav_modules/features/custom_card_module/utlis/media.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,25 +21,21 @@ class CustomCardVM extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String?> pickImageFromCameraOrGallery(
+  Future<String?> callImagePickerAndCropper(
       {bool isGallery = true, required bool isEditCard}) async {
-    final ImagePicker picker = ImagePicker();
-    final response = await picker.pickImage(
-        source: isGallery ? ImageSource.gallery : ImageSource.camera,
-        imageQuality: 100,
-        maxHeight: 1800,
-        maxWidth: 1800);
-    if (response != null) {
-      final bytes = File(response.path).readAsBytesSync().lengthInBytes;
-      final kb = bytes / 1024;
-      final mb = kb / 1024;
-      if (mb > 10) {
-        return null;
-      }
+    final path = await MediaUtlis.pickImageFromCameraOrGallery(
+      isGallery: isGallery,
+      isEditCard: isEditCard,
+    );
 
-      return cropSelectedImage(response.path, isEditCard);
+    if (path != null) {
+      if (isEditCard) {
+        setTempImage = File(path);
+      } else {
+        image = File(path);
+      }
     }
-    return null;
+    return path;
   }
 
   File? _tempImage;
@@ -46,24 +43,6 @@ class CustomCardVM extends ChangeNotifier {
   set setTempImage(File? newImage) {
     _tempImage = newImage;
     notifyListeners();
-  }
-
-  Future<String?> cropSelectedImage(String filePath, bool isEditCard) async {
-    final response = await ImageCropper().cropImage(
-      sourcePath: filePath,
-      uiSettings: [
-        AndroidUiSettings(
-          initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false,
-        ),
-      ],
-    );
-    if (isEditCard) {
-      setTempImage = File(response!.path);
-    } else {
-      image = File(response!.path);
-    }
-    return response.path;
   }
 
   Future<void> changeImage(Uint8List? imageBytes,
