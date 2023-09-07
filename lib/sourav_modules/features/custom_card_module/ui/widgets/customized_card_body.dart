@@ -51,7 +51,7 @@ class _CustomizedCardBodyState extends State<CustomizedCardBody> {
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(18.0),
+              padding: const EdgeInsets.all(14.0),
               child: CustomRedButton(
                 labelText: 'Save',
                 onTap: () {
