@@ -4,9 +4,23 @@ import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/view_models/custom_card_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:screenshot/screenshot.dart';
 
-class CustomizedCardBody extends StatelessWidget {
+class CustomizedCardBody extends StatefulWidget {
   const CustomizedCardBody({super.key});
+
+  @override
+  State<CustomizedCardBody> createState() => _CustomizedCardBodyState();
+}
+
+class _CustomizedCardBodyState extends State<CustomizedCardBody> {
+  late final ScreenshotController screenshotController;
+
+  @override
+  void initState() {
+    screenshotController = ScreenshotController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +31,10 @@ class CustomizedCardBody extends StatelessWidget {
           const ChoosePictureWidget(),
           SizedBox(
             height: MediaQuery.of(context).size.height / 1.5,
-            child: const CustomCard(disableGesture: false),
+            child: CustomCard(
+              screenshotController: screenshotController,
+              disableGesture: false,
+            ),
           ),
           const Spacer(),
           Container(
@@ -38,8 +55,11 @@ class CustomizedCardBody extends StatelessWidget {
               child: CustomRedButton(
                 labelText: 'Save',
                 onTap: () {
-                  context.read<CustomCardVM>().postImage(onSuccess: () {
-                    Navigator.of(context).pop();
+                  screenshotController.capture().then((image) {
+                    context.read<CustomCardVM>().changeImage(image,
+                        onSuccess: () {
+                      Navigator.of(context).pop();
+                    });
                   });
                 },
               ),

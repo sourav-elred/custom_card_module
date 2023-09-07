@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui/widgets/rounded_cta_widget.dart';
 import 'package:flutter/material.dart';
 
 class CTAWidgets extends StatelessWidget {
@@ -30,61 +31,13 @@ class CTAWidgets extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 8),
-        Container(
-          width: 32,
-          height: 32,
-          decoration: ShapeDecoration(
-            color: Colors.white.withOpacity(0.2),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          child: const Center(
-            child: Icon(Icons.mail, color: Colors.white),
-          ),
-        ),
+        const RoundedCTAWidget(icon: Icons.mail),
         const SizedBox(width: 8),
-        Container(
-          width: 32,
-          height: 32,
-          decoration: ShapeDecoration(
-            color: Colors.white.withOpacity(0.2),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          child: const Center(
-            child: Icon(Icons.phone, color: Colors.white),
-          ),
-        ),
+        const RoundedCTAWidget(icon: Icons.phone),
         const SizedBox(width: 8),
-        Container(
-          width: 32,
-          height: 32,
-          decoration: ShapeDecoration(
-            color: Colors.white.withOpacity(0.2),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          child: const Center(
-            child: Icon(Icons.location_on, color: Colors.white),
-          ),
-        ),
+        const RoundedCTAWidget(icon: Icons.location_on),
         const SizedBox(width: 8),
-        Container(
-          width: 32,
-          height: 32,
-          decoration: ShapeDecoration(
-            color: Colors.white.withOpacity(0.2),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          child: const Center(
-            child: Icon(Icons.web_asset_rounded, color: Colors.white),
-          ),
-        ),
+        const RoundedCTAWidget(icon: Icons.web_asset_rounded),
       ],
     );
   }

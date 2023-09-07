@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/core/constants/assets.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui/widgets/botton_sheet_for_image_upload.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,7 +26,7 @@ class ChoosePictureWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                'assets/icons/gallery-icon.svg',
+                AssetsConstants.galleryIcon,
                 height: 20,
               ),
               const SizedBox(width: 10),

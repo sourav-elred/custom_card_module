@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/core/constants/routes.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/view_models/custom_card_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,9 +21,7 @@ class BuildImagePickerIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        _pickImages(context, isEditCard);
-      },
+      onTap: () => _pickImages(context, isEditCard, isGallery: isGallery),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -59,16 +58,17 @@ class BuildImagePickerIcons extends StatelessWidget {
 }
 
 void _pickImages(BuildContext context, bool isEditCard,
-    {bool isGallery = false}) {
+    {required bool isGallery}) {
   context
       .read<CustomCardVM>()
-      .pickImageFromCameraOrGallery(isGallery: isGallery)
+      .pickImageFromCameraOrGallery(
+          isGallery: isGallery, isEditCard: isEditCard)
       .then((imgPath) {
     if (imgPath != null) {
       if (isEditCard) {
-        Navigator.of(context).pushNamed('/customize-card-screen');
+        Navigator.of(context).pop();
       } else {
-        Navigator.of(context).pushNamed('/upload-screen');
+        Navigator.of(context).pushNamed(Routes.uploadScreen);
       }
     }
   });

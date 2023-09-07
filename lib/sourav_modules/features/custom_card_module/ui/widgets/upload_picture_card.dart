@@ -1,3 +1,5 @@
+import 'package:custom_card_module/sourav_modules/core/constants/assets.dart';
+import 'package:custom_card_module/sourav_modules/core/constants/colors.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui/widgets/botton_sheet_for_image_upload.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,9 +10,7 @@ class UploadPictureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        showBottonSheetForImageUpload(context);
-      },
+      onTap: () => showBottonSheetForImageUpload(context),
       child: Container(
         height: MediaQuery.of(context).size.height / 13,
         decoration: ShapeDecoration(
@@ -26,9 +26,7 @@ class UploadPictureCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  child: SvgPicture.asset(
-                    'assets/icons/material-symbols_magic-button.svg',
-                  ),
+                  child: SvgPicture.asset(AssetsConstants.magicButton),
                 ),
               ],
             ),
@@ -36,7 +34,7 @@ class UploadPictureCard extends StatelessWidget {
               'Upload picture',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xFF147BFF),
+                color: ColorConstants.elRedBlue,
                 fontSize: 16,
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.w600,
@@ -47,9 +45,7 @@ class UploadPictureCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
-                  child: SvgPicture.asset(
-                    'assets/icons/material-symbols_magic-button-2.svg',
-                  ),
+                  child: SvgPicture.asset(AssetsConstants.magicButton2),
                 ),
               ],
             ),

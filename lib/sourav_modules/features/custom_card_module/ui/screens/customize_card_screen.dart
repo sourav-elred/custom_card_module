@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/core/constants/colors.dart';
 import 'package:custom_card_module/sourav_modules/core/ui/widgets/api_loader_screen.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui/widgets/customized_card_body.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/view_models/custom_card_vm.dart';
@@ -30,12 +31,13 @@ class CustomizeCardScreen extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 if (Navigator.canPop(context)) {
+                  context.read<CustomCardVM>().setTempImage = null;
                   Navigator.of(context).pop();
                 }
               },
               child: Container(
-                color: const Color(0xFFE72D38).withOpacity(.2),
-                child: const Icon(Icons.close, color: Color(0xFFE72D38)),
+                color: ColorConstants.elRed.withOpacity(.2),
+                child: const Icon(Icons.close, color: ColorConstants.elRed),
               ),
             ),
           ],

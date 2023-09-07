@@ -7,7 +7,7 @@ class MultipleCategoriesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2.1,
+      height: MediaQuery.of(context).size.height / 2,
       child: GridView(
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

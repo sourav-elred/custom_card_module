@@ -1,4 +1,5 @@
 import 'package:custom_card_module/sourav_modules/core/ui/widgets/custom_red_button.dart';
+import 'package:custom_card_module/sourav_modules/core/constants/routes.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/view_models/custom_card_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +32,8 @@ class BottomSection extends StatelessWidget {
                 invert: true,
                 labelText: 'Edit Card',
                 onTap: () {
-                  Navigator.of(context).pushNamed('/custom-card-fields-screen');
+                  Navigator.of(context)
+                      .pushNamed(Routes.customCardFieldsScreen);
                 },
               ),
             ),

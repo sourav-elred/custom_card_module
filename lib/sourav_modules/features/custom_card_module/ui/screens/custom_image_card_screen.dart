@@ -17,7 +17,7 @@ class CustomImageCardScreen extends StatelessWidget {
             visible: isLoading,
             child: const ApiLoaderScreen(),
           ),
-          selector: (_, model) => model.isLoading == true,
+          selector: (_, model) => model.isLoading,
         ),
       ],
     );

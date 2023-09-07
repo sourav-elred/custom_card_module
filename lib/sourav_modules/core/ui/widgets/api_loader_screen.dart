@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class ApiLoaderScreen extends StatelessWidget {
@@ -14,8 +15,8 @@ class ApiLoaderScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              CircularProgressIndicator(color: Color(0xffE72D38)),
-              Text('Saving...', style: TextStyle(color: Color(0xffE72D38)))
+              CircularProgressIndicator(color: ColorConstants.elRed),
+              Text('Saving...', style: TextStyle(color: ColorConstants.elRed))
             ],
           ),
         ),

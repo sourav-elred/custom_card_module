@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/core/constants/assets.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui/widgets/customize_button.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui/widgets/text_field_with_switch.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,7 @@ class MiddleSectionWithTextFIelds extends StatelessWidget {
                 backgroundColor: Colors.white,
                 radius: 58.0,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage(
-                    'assets/images/artist.jpeg',
-                  ),
+                  backgroundImage: AssetImage(AssetsConstants.userDP),
                   radius: 50.0,
                 ),
               ),

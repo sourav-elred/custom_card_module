@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomRedButton extends StatelessWidget {
@@ -24,13 +25,13 @@ class CustomRedButton extends StatelessWidget {
             Container(
               decoration: ShapeDecoration(
                 color: onTap == null
-                    ? const Color(0x4CE72D38)
+                    ? ColorConstants.elRedDisabled
                     : invert
                         ? Colors.white
-                        : const Color(0xFFE72D38),
+                        : ColorConstants.elRed,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(42),
-                    side: const BorderSide(color: Color(0xFFE72D38))),
+                    side: const BorderSide(color: ColorConstants.elRed)),
               ),
             ),
             Center(
@@ -38,7 +39,7 @@ class CustomRedButton extends StatelessWidget {
                 labelText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: invert ? const Color(0xFFE72D38) : Colors.white,
+                  color: invert ? ColorConstants.elRed : Colors.white,
                   fontSize: 20,
                   fontFamily: 'AvenirNextLTPro',
                   fontWeight: FontWeight.w500,

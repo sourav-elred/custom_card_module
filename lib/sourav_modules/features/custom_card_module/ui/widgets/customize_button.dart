@@ -1,3 +1,5 @@
+import 'package:custom_card_module/sourav_modules/core/constants/colors.dart';
+import 'package:custom_card_module/sourav_modules/core/constants/routes.dart';
 import 'package:flutter/material.dart';
 
 class CustomizeButton extends StatelessWidget {
@@ -10,7 +12,7 @@ class CustomizeButton extends StatelessWidget {
       right: 15,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed('/customize-card-screen');
+          Navigator.of(context).pushNamed(Routes.customizeCardScreen);
         },
         child: Container(
           width: 100,
@@ -23,12 +25,12 @@ class CustomizeButton extends StatelessWidget {
           child: Row(
             children: const [
               SizedBox(width: 2),
-              Icon(Icons.edit, color: Color(0xFFE72D38), size: 18),
+              Icon(Icons.edit, color: ColorConstants.elRed, size: 18),
               SizedBox(width: 4),
               Text(
                 'Customize',
                 style: TextStyle(
-                  color: Color(0xFFE72D38),
+                  color: ColorConstants.elRed,
                   fontSize: 14,
                   fontFamily: 'AvenirNextLTPro',
                 ),

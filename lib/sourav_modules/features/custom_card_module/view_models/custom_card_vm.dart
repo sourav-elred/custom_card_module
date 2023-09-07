@@ -1,12 +1,18 @@
 import 'dart:io';
+import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/services/custom_card_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart';
 
 class CustomCardVM extends ChangeNotifier {
   final customCardService = CustomCardService();
+
+  File? image;
 
   bool isLoading = false;
   void setLoading(newValue) {
@@ -14,15 +20,8 @@ class CustomCardVM extends ChangeNotifier {
     notifyListeners();
   }
 
-  String? imagePath;
-  double? scale;
-
-  void onScaleChange(double? newScaleValue) {
-    scale = newScaleValue;
-    notifyListeners();
-  }
-
-  Future<String?> pickImageFromCameraOrGallery({bool isGallery = true}) async {
+  Future<String?> pickImageFromCameraOrGallery(
+      {bool isGallery = true, required bool isEditCard}) async {
     final ImagePicker picker = ImagePicker();
     final response = await picker.pickImage(
         source: isGallery ? ImageSource.gallery : ImageSource.camera,
@@ -37,12 +36,19 @@ class CustomCardVM extends ChangeNotifier {
         return null;
       }
 
-      return cropSelectedImage(response.path);
+      return cropSelectedImage(response.path, isEditCard);
     }
     return null;
   }
 
-  Future<String?> cropSelectedImage(String filePath) async {
+  File? _tempImage;
+  File? get tempImage => _tempImage;
+  set setTempImage(File? newImage) {
+    _tempImage = newImage;
+    notifyListeners();
+  }
+
+  Future<String?> cropSelectedImage(String filePath, bool isEditCard) async {
     final response = await ImageCropper().cropImage(
       sourcePath: filePath,
       uiSettings: [
@@ -52,20 +58,49 @@ class CustomCardVM extends ChangeNotifier {
         ),
       ],
     );
-    imagePath = response?.path;
-    notifyListeners();
-    return response?.path;
+    if (isEditCard) {
+      setTempImage = File(response!.path);
+    } else {
+      image = File(response!.path);
+    }
+    return response.path;
+  }
+
+  Future<void> changeImage(Uint8List? imageBytes,
+      {VoidCallback? onSuccess}) async {
+    try {
+      if (imageBytes == null) {
+        return;
+      }
+
+      setLoading(true);
+      final directory = await getApplicationDocumentsDirectory();
+      final imagePath =
+          await File('${directory.path}/image${Random().nextDouble()} .png')
+              .create();
+
+      image =
+          await imagePath.writeAsBytes(imageBytes, mode: FileMode.writeOnly);
+      await postImage(onSuccess: () {
+        onSuccess?.call();
+        setTempImage = null;
+      });
+    } catch (e) {
+      print(e.toString());
+    } finally {
+      setLoading(false);
+    }
   }
 
   Future<void> postImage({VoidCallback? onSuccess}) async {
     setLoading(true);
     try {
-      if (imagePath != null) {
-        final result = await customCardService.postBannerImage(imagePath!);
+      if (image != null) {
+        final result = await customCardService.postBannerImage(image!.path);
 
         print('result =====> $result');
 
-        if (result.statusCode == 200 && result.data['success']) {
+        if (result) {
           onSuccess?.call();
         }
       }

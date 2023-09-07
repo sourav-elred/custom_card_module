@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/core/constants/assets.dart';
 import 'package:flutter/material.dart';
 
 class BottomSectionForCard extends StatelessWidget {
@@ -11,7 +12,7 @@ class BottomSectionForCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.asset(
-            'assets/images/elRed-logo.png',
+            AssetsConstants.elRedLogo,
             height: 50,
             width: 50,
           ),

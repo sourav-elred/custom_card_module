@@ -1,3 +1,4 @@
+import 'package:custom_card_module/sourav_modules/core/constants/assets.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui/widgets/build_image_picker_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -25,13 +26,13 @@ PersistentBottomSheetController<dynamic> showBottonSheetForImageUpload(
               children: [
                 BuildImagePickerIcons(
                   isEditCard: isEditCard,
-                  iconPath: 'assets/icons/material-symbols_photo-camera.svg',
+                  iconPath: AssetsConstants.cameraIcon,
                   label: 'Camera',
                 ),
                 const SizedBox(width: 40),
                 BuildImagePickerIcons(
                   isEditCard: isEditCard,
-                  iconPath: 'assets/icons/bi_image.svg',
+                  iconPath: AssetsConstants.uploadFromGalleryIcon,
                   label: 'Gallery',
                   isGallery: true,
                 ),

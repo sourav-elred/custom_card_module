@@ -1,6 +1,6 @@
-import 'dart:io';
-
 import 'package:custom_card_module/sourav_modules/core/ui/widgets/custom_red_button.dart';
+import 'package:custom_card_module/sourav_modules/core/constants/routes.dart';
+import 'package:custom_card_module/sourav_modules/features/custom_card_module/ui/widgets/custom_app_bar.dart';
 import 'package:custom_card_module/sourav_modules/features/custom_card_module/view_models/custom_card_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,38 +13,7 @@ class UploadPictureBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: false,
-        title: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                if (Navigator.canPop(context)) {
-                  Navigator.of(context).pop();
-                }
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Text(
-              'Upload Picture',
-              style: GoogleFonts.roboto(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
+      appBar: buildCustomAppBar(context, label: 'Upload Picture'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
@@ -58,9 +27,9 @@ class UploadPictureBody extends StatelessWidget {
               ),
               child: Consumer<CustomCardVM>(
                 builder: (context, customCardVm, child) {
-                  if (customCardVm.imagePath != null) {
+                  if (customCardVm.image != null) {
                     return Image.file(
-                      File(customCardVm.imagePath!),
+                      customCardVm.image!,
                       fit: BoxFit.cover,
                     );
                   } else {
@@ -81,7 +50,7 @@ class UploadPictureBody extends StatelessWidget {
               labelText: 'Save & Continue',
               onTap: () {
                 context.read<CustomCardVM>().postImage(onSuccess: () {
-                  Navigator.of(context).pushNamed('/custom-card-screen');
+                  Navigator.of(context).pushNamed(Routes.customCardScreen);
                 });
               },
             ),

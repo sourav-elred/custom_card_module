@@ -1,3 +1,5 @@
+import 'package:custom_card_module/sourav_modules/core/constants/assets.dart';
+import 'package:custom_card_module/sourav_modules/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,9 +16,7 @@ class Searchbar extends StatelessWidget {
           contentPadding: EdgeInsets.zero,
           prefixIcon: Padding(
             padding: const EdgeInsets.all(10),
-            child: SvgPicture.asset(
-              'assets/icons/search.svg',
-            ),
+            child: SvgPicture.asset(AssetsConstants.searchIcon),
           ),
           filled: true,
           fillColor: Colors.white,
@@ -31,14 +31,14 @@ class Searchbar extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(
               width: 0.50,
-              color: Color(0xFFC5C5C5),
+              color: ColorConstants.elRedGrey,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(
               width: 0.50,
-              color: Color(0xFFC5C5C5),
+              color: ColorConstants.elRedGrey,
             ),
           ),
         ),
